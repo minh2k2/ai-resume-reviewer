@@ -61,3 +61,9 @@ Instructions will be added after backend setup.
 - This project does NOT focus on training AI models.
 - The main focus is software architecture, API design, and clean code.
 
+## UI Implementation
+The UI is implemented using Material UI (MUI).
+The layout was designed with the help of AI-generated design suggestions
+and then manually implemented using React and MUI components.
+
+
