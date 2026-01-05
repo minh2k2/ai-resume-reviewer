@@ -32,7 +32,7 @@ AI is used as an external service, similar to a third-party API.
 - Backend: Python, FastAPI
 - AI Service: OpenAI / Gemini API
 - PDF Processing: pdfplumber
-- Frontend: React + Tailwind CSS (planned)
+- Frontend: React + MUI
 
 ---
 
