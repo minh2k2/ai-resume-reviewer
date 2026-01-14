@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Container, CircularProgress } from '@mui/material'
+import { Container, CircularProgress, Box } from '@mui/material'
 import UploadCard from '../components/ResumeUploader/UploadCard'
 import ResultSection from '../components/ReviewResult/ResultSection'
 import { mockAIResult } from '../mocks/aiResult'
@@ -18,14 +18,18 @@ const Home = () => {
   }
 
   return (
-    <Container maxWidth="md">
+    <Container>
       <UploadCard
         file={file}
         onFileChange={(e) => setFile(e.target.files[0])}
         onAnalyze={handleAnalyze}
       />
 
-      {loading && <CircularProgress size={20} />}
+      {loading && (
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+          <CircularProgress size={20} />
+        </Box>
+      )}
 
       {result && <ResultSection result={result} />}
     </Container>
