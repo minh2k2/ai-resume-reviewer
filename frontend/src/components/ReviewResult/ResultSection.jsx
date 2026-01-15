@@ -17,7 +17,11 @@ const ResultSection = ({ result }) => {
         <Typography variant="h8" gutterBottom>
           Resume Score: {result.score}%
         </Typography>
-        <LinearProgress variant="determinate" value={result.score} />
+        <LinearProgress
+          variant="determinate"
+          value={result.score}
+          sx={{ height: 8, borderRadius: 5, mt: 1 }}
+        />
       </Box>
       <AlertTitle>Resume Score: {result.score}%</AlertTitle>
       <Grid container spacing={3}>
