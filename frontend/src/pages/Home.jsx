@@ -2,19 +2,41 @@ import { useState } from 'react'
 import { Container, CircularProgress, Box } from '@mui/material'
 import UploadCard from '../components/ResumeUploader/UploadCard'
 import ResultSection from '../components/ReviewResult/ResultSection'
-import { mockAIResult } from '../mocks/aiResult'
+
 
 const Home = () => {
   const [file, setFile] = useState(null)
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState(null)
 
-  const handleAnalyze = () => {
+  const handleAnalyze = async () => {
+    if (!file) return
+
     setLoading(true)
-    setTimeout(() => {
-      setResult(mockAIResult)
+    setResult(null)
+
+    const formData = new FormData()
+    formData.append('file', file)
+
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/analyze', {
+        method: 'POST',
+        body: formData,
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(errorData.detail || 'Analysis failed')
+      }
+
+      const data = await response.json()
+      setResult(data)
+    } catch (error) {
+      console.error('Error analyzing resume:', error)
+      alert(error.message)
+    } finally {
       setLoading(false)
-    }, 1200)
+    }
   }
 
   return (
